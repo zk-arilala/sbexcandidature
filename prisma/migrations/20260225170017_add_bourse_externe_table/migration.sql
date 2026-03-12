@@ -1,0 +1,31 @@
+-- CreateTable
+CREATE TABLE "BourseExterne" (
+    "id" SERIAL NOT NULL,
+    "nom_bourse" VARCHAR(255) NOT NULL,
+    "annonce" TEXT NOT NULL,
+    "description" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "image_representation" TEXT NOT NULL DEFAULT 'default_bourse.jpg',
+    "type_financement" VARCHAR(100) NOT NULL,
+    "annee_universitaire" VARCHAR(20) NOT NULL,
+    "documents" TEXT,
+    "date_publication" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "date_modification" DATE NOT NULL,
+    "organisme" VARCHAR(255) NOT NULL,
+    "niveau_etudes" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "domaine_etudes" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "ouverture_candidature" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "limite_candidature" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "duree_etudes" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "universite_accueil" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "source" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "detail_communique" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "url_detail" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "langue_enseignement" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "galerie_photos" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "url_inscription" VARCHAR(500),
+    "pays" VARCHAR(100) NOT NULL,
+    "disponibilite" INTEGER NOT NULL DEFAULT 1,
+    "contact" TEXT,
+
+    CONSTRAINT "BourseExterne_pkey" PRIMARY KEY ("id")
+);

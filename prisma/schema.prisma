@@ -1,0 +1,300 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  //output   = "../app/generated/prisma"
+  output          = "./generated/client"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  //url      = env("DATABASE_URL")
+}
+
+enum StatutDossier {
+  soumis              @map("Dossier Soumis")
+  en_cours_traitement @map("En cours de traitement")
+  accepte             @map("Accepté")
+  rejete              @map("Rejeté")
+}
+
+enum StatutDemande {
+  valide  @map("Valide")
+  expiree @map("Expirée")
+}
+
+enum Sexe {
+  Masculin
+  Feminin
+}
+
+enum SituationFamiliale {
+  celibataire @map("Célibataire")
+  marie       @map("Marié")
+  divorce     @map("Divorcé")
+  veuf        @map("Veuf")
+}
+
+enum TypeBaccalaureat {
+  General   @map("Général")
+  Technique @map("Technique")
+}
+
+enum SerieBaccalaureat {
+  A1
+  A2
+  C
+  D
+  L
+  S
+  OSE
+  Technique
+}
+
+enum MentionBaccalaureat {
+  tres_bien  @map("Très bien")
+  bien       @map("Bien")
+  assez_bien @map("Assez bien")
+  passable   @map("Passable")
+}
+
+model RoleUtilisateur {
+  id          Int     @id @default(autoincrement())
+  libelle     String  @db.VarChar(50)
+  description String?
+
+  utilisateurs Utilisateur[]
+}
+
+model Utilisateur {
+  id              Int       @id @default(autoincrement())
+  user_email      String    @unique @db.VarChar(255)
+  identifiant     String 
+  nom             String    @default("")
+  prenom          String    @default("")
+  mot_de_passe    String
+  est_actif       Boolean   @default(true)
+  date_creation   DateTime  @default(now()) @db.Timestamptz(3)
+  date_inactivation DateTime? @db.Timestamptz(3)
+
+  role_id Int
+  role    RoleUtilisateur @relation(fields: [role_id], references: [id])
+
+  candidats Candidat[]
+}
+
+model Province {
+  id          Int     @id @default(autoincrement())
+  libelle     String  @db.VarChar(200)
+  description String?
+
+  regions            Region[]
+  candidats          Candidat[]
+  infosbaccalaureats InfosBaccalaureat[]
+}
+
+model Region {
+  id          Int     @id @default(autoincrement())
+  libelle     String  @db.VarChar(200)
+  description String?
+
+  province_id Int
+  province    Province @relation(fields: [province_id], references: [id])
+
+  candidats_origine  Candidat[] @relation("RegionOrigine")
+  candidats_logement Candidat[] @relation("RegionLogement")
+}
+
+model Diplome {
+  id          Int     @id @default(autoincrement())
+  libelle     String  @db.VarChar(200)
+  description String?
+
+  candidats Candidat[]
+}
+
+model Candidat {
+  id Int @id @default(autoincrement())
+
+  utilisateur_id Int
+  utilisateur    Utilisateur @relation(fields: [utilisateur_id], references: [id])
+
+  region_origine Int
+  region         Region @relation("RegionOrigine", fields: [region_origine], references: [id])
+
+  nom            String   @db.VarChar(100)
+  prenom         String   @db.VarChar(100)
+  sexe           Sexe
+  date_naissance DateTime     @db.Date
+  age            Int
+  lieu_naissance String   @db.VarChar(255)
+  nationalite    String   @db.VarChar(100)
+
+  situation_familiale SituationFamiliale
+  logement_adresse    String
+
+  logement_region_id Int
+  logement_region             Region @relation("RegionLogement", fields: [logement_region_id], references: [id])
+
+  logement_province_id Int
+  province             Province @relation(fields: [logement_province_id], references: [id])
+
+  email     String @db.VarChar(255)
+  telephone String @db.VarChar(20)
+
+  pere_nom          String?
+  pere_profession   String?
+  mere_nom          String?
+  mere_profession   String?
+  tuteur_nom        String?
+  tuteur_profession String?
+
+  urgence_nom       String?
+  urgence_adresse   String?
+  urgence_telephone String?
+
+  nombre_frere_soeur     Int?
+  noms_frere_soeur   String?
+
+  nombre_enfants         Int?
+  nombre_enfants_acharge Int?
+
+  conjoint_employeur_nom     String?
+  conjoint_employeur_adresse String?
+
+  dernier_diplome_id    Int?
+  dernier_diplome       Diplome? @relation(fields: [dernier_diplome_id], references: [id])
+  dernier_diplome_annee  Int?
+
+  infosbaccalaureat InfosBaccalaureat?
+  demandes          DemandeBourse[]
+}
+
+model InfosBaccalaureat {
+  id Int @id @default(autoincrement())
+
+  candidat_id Int      @unique
+  candidat    Candidat @relation(fields: [candidat_id], references: [id])
+
+  type               TypeBaccalaureat
+  serie              SerieBaccalaureat
+  mention_obtenu     MentionBaccalaureat
+  annee_obtention    Int
+  numero_inscription String              @db.VarChar(100)
+
+  bacc_province_id Int
+  province         Province @relation(fields: [bacc_province_id], references: [id])
+}
+
+model TypeBourse {
+  id          Int     @id @default(autoincrement())
+  libelle     String  @db.VarChar(200)
+  description String?
+
+  demandes DemandeBourse[]
+}
+
+model NumeroDossier {
+  id          Int     @id @default(autoincrement())
+  numero      Int
+  reference   String  @db.VarChar(250)
+}
+
+model DemandeBourse {
+  id Int @id @default(autoincrement())
+
+  numero_dossier String @unique @db.VarChar(100)
+
+  candidat_id Int
+  candidat    Candidat @relation(fields: [candidat_id], references: [id])
+
+  type_bourse_id Int
+  type_bourse    TypeBourse @relation(fields: [type_bourse_id], references: [id])
+
+  specialites           String
+  pays_demandes         String
+  organisme_sollicite   String?
+  organisme_detail_contact   String?
+
+  autre_depot_externe   Boolean?
+  details_autres_depots String?
+  autresdepot_nature_bourse   String?
+  autresdepot_specialite      String?
+  autresdepot_organisme_sollicite   String?
+  autresdepot_date_depart   DateTime?     @db.Date
+  nombre_depot_externe  Int
+  depots_externes DepotExterne[]
+
+  annonce_bourse_externe_id  Int?
+  annonce_bourse_externe     BourseExterne? @relation(fields: [annonce_bourse_externe_id], references: [id])
+
+  date_depot      DateTime  @default(now()) @db.Timestamptz(3)
+  date_expiration DateTime? @db.Timestamptz(3)
+
+  statut_demande StatutDemande
+  statut_dossier StatutDossier
+
+  pieces_jointes PiecesJointes[]
+}
+
+model DepotExterne {
+  id Int @id @default(autoincrement())
+  
+  demande_bourse_id Int
+  demande_bourse    DemandeBourse @relation(fields: [demande_bourse_id], references: [id])
+
+  nature_bourse   String?
+  specialite      String?
+  organisme_sollicite   String?
+  date_depart   DateTime?     @db.Date
+}
+
+model PiecesJointes {
+  id Int @id @default(autoincrement())
+
+  demande_bourse_id Int
+  demande_bourse    DemandeBourse @relation(fields: [demande_bourse_id], references: [id])
+
+  type_piece  String @db.VarChar(255)
+  nom_fichier String
+}
+
+model BourseExterne {
+  id                    Int      @id @default(autoincrement())
+  nom_bourse            String   @db.VarChar(255)
+  annonce               String   @db.Text
+  description           String[] @default([])
+  image_representation  String   @default("default_bourse.jpg")
+  type_financement      String   @db.VarChar(100)
+  annee_universitaire   String   @db.VarChar(20)
+  documents             String?  @db.Text
+  date_publication      DateTime @default(now()) @db.Date
+  date_modification     DateTime @db.Date
+  organisme             String   @db.VarChar(255)
+  
+  niveau_etudes         String[] @default([])
+  domaine_etudes        String[] @default([])
+  ouverture_candidature String[] @default([])
+  limite_candidature    String[] @default([])
+  duree_etudes          String[] @default([])
+  universite_accueil    String[] @default([])
+  source                String[] @default([])
+  detail_communique     String[] @default([])
+  url_detail            String[] @default([])
+  langue_enseignement   String[] @default([])
+  galerie_photos        String[] @default([])
+
+  url_inscription       String?  @db.VarChar(500)
+  pays                  String   @db.VarChar(100)
+  disponibilite         Int      @default(1) // 1 pour actif, 0 pour inactif
+  contact               String?  @db.Text
+
+  demandes_bourse      DemandeBourse[]
+}
+
+
