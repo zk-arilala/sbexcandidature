@@ -11,17 +11,17 @@ export default async function HeroSection() {
     });
     
   return (
-    <section className="hero-glow-bg pt-16 relative overflow-hidden dark:bg-[#171F2E]">
+    <section className="hero-glow-bg pt-16 relative overflow-hidden">
       <div className="max-w-480 mx-auto relative">
         <HeroLogos />
         <div className="wrapper">
           <div className="max-w-300 mx-auto">
             <div className="text-center pb-16">
 
-              <h1 className="text-white mx-auto font-bold mb-4 text-4xl sm:text-[50px] dark:text-white/90 sm:leading-14 max-w-250">
+              <h1 className="text-white mx-auto font-bold mb-4 text-4xl sm:text-[50px] sm:leading-14 max-w-250">
                 Plateforme de dépôt de candidature aux bourses d'études extérieurs
               </h1>
-              <p className="max-w-200 text-center mx-auto dark:text-gray-400 text-gray-500 text-base">
+              <p className="max-w-200 text-center mx-auto text-gray-500 text-base">
                 Cette plateforme permet aux étudiants de soumettre leurs candidatures aux bourses universitaires et post-universitaires de manière simple, sécurisée et entièrement en ligne.
               </p>
 

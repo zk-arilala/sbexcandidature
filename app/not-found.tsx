@@ -81,10 +81,10 @@ export default function NotFoundPage() {
           alt=""
         />
         <h1 className="text-4xl font-black text-gray-800 mb-2 dark:text-white/90">
-          OPPS! Page Not Found
+          Oups ! Page introuvable
         </h1>
         <p className="text-gray-500 text-base dark:text-gray-400">
-          We are sorry, But the page you requested was not found
+          Désolé, le contenu que vous recherchez n'existe pas ou n'est plus disponible. Mais rassurez-vous : votre projet d'études, lui, tient toujours !
         </p>
         <Link
           href="/"

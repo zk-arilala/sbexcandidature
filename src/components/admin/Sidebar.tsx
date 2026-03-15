@@ -66,7 +66,7 @@ export default function Sidebar() {
 
       <aside
         className={cn(
-          "bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out z-50",
+          "bg-white border-r border-slate-200 transition-all duration-300 ease-in-out z-50",
           isMobile ? "fixed inset-y-0 left-0 shadow-2xl" : "sticky top-0 h-screen",
           isOpen ? "w-70" : "w-0 lg:w-20 overflow-hidden"
         )}
@@ -124,7 +124,7 @@ export default function Sidebar() {
             )}
           </div>
             
-          <div className="p-4 border-t border-slate-100 dark:border-slate-800">
+          <div className="p-4 border-t border-slate-100">
              <button 
              onClick={logout}
              className="flex items-center gap-3 w-full p-3 text-red-500 font-semibold text-sm hover:bg-red-50 rounded-xl transition-colors">
@@ -146,7 +146,7 @@ function SidebarItem({ item, active, collapsed }: any) {
         "flex items-center gap-3 p-3 rounded-xl text-sm font-semibold transition-all group text-(--color-theme-dark-blue)",
         active 
           ? "bg-(--color-theme-green) text-white shadow-lg shadow-theme-green/20" 
-          : " hover:bg-theme-grey/20 dark:hover:bg-slate-900"
+          : " hover:bg-theme-grey/20"
       )}
     >
       <item.icon size={20} className={cn("shrink-0", active ? "text-white" : "text-(--color-theme-dark-blue)")} />

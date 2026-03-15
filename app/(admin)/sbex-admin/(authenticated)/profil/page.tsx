@@ -115,7 +115,7 @@ export default function ProfilPage() {
                 <ShieldCheck size={32} />
              </div>
              <h4 className="font-black text-slate-900 uppercase tracking-tight">Rôle {profile?.role?.libelle}</h4>
-             <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+             <p className="text-sm text-slate-500 mt-2 leading-relaxed">
                Votre compte dispose des privilèges <strong>{profile?.role?.libelle}</strong> dans tout le platforme de gestion des bourses extérieurs.
              </p>
           </div>

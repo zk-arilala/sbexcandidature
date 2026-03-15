@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import * as actions from "@app/actions";
-import { Search, Filter, ChevronLeft, ChevronRight, SlidersHorizontal, Loader2, GraduationCap, CalendarDays, Layers, User, MapPin, ArrowUpRight, RotateCcw, ArrowUpAZ, ArrowDownZA, CalendarCheck, CheckCheck, AlertTriangle, Clock, ChevronDown, Ghost, FileXCorner, SearchX } from "lucide-react";
+import { Search, Download, Filter, ChevronLeft, ChevronRight, SlidersHorizontal, Loader2, GraduationCap, CalendarDays, Layers, User, MapPin, ArrowUpRight, RotateCcw, ArrowUpAZ, ArrowDownZA, CalendarCheck, CheckCheck, AlertTriangle, Clock, ChevronDown, Ghost, FileXCorner, SearchX } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
@@ -162,16 +162,14 @@ export default function CandidaturesPage() {
     <div className="p-6 space-y-6">
       {/* HEADER & TRI */}
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Liste des dossiers de candidature déposés</h1>
+        <h1 className="text-2xl text-(--color-theme-green) font-bold">Liste des dossiers de candidature déposés</h1>
         
         {/* BOUTON EXPORTER */}
         <button 
           onClick={() => setIsExportModalOpen(true)}
           className="flex items-center gap-2 px-5 py-2.5 bg-(--color-theme-yellow) border border-(--color-theme-yellow) rounded-xl text-sm font-semibold text-slate-900 hover:bg-(--color-theme-green) hover:border-(--color-theme-green) hover:text-white shadow-sm transition-all active:scale-95"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
+          <Download size={18} />
           Exporter les données (en Excel)
         </button>
       </div>
@@ -440,7 +438,7 @@ export default function CandidaturesPage() {
         
       </div>
 
-      <div className="w-full font-medium">
+      <div className="w-full font-medium text-slate-600">
         Nombre de résultats trouvés : <span className="font-bold text-(--color-theme-red) animate-in fade-in duration-500">{result.totalCount || 0}</span> <span className="text-(--color-theme-red)">dossiers</span>
       </div>
       

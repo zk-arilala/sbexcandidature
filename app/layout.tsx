@@ -19,6 +19,10 @@ export const metadata = {
   description: "Plateforme de dépôt de candidature aux bourse d'études internationales",
 };
 
+export const viewport = {
+  colorScheme: 'light',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={`bg-gray-50 dark:bg-dark-secondary min-h-screen flex flex-col ${poppins.className}`} suppressHydrationWarning>
+      <body className={`bg-gray-50 min-h-screen flex flex-col ${poppins.className}`} suppressHydrationWarning>
         <SessionProvider>
           <Header />
 

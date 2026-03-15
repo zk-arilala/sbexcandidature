@@ -20,10 +20,10 @@ export default async function BoursesExternesSection() {
         <div className="wrapper">
             <div>
                 <div className="max-w-2xl mx-auto mb-12 text-center">
-                  <h2 className="mb-3 font-bold text-center text-(--color-theme-dark-blue) text-3xl dark:text-white/90 md:text-title-lg">
+                  <h2 className="mb-3 font-bold text-center text-(--color-theme-dark-blue) text-3xl md:text-title-lg">
                       Les bourses disponibles
                   </h2>
-                  <p className="max-w-xl mx-auto leading-6 text-(--color-theme-grey) dark:text-gray-400">
+                  <p className="max-w-xl mx-auto leading-6 text-(--color-theme-grey)">
                       Vous trouverez ici la liste des bourses disponibles en ce moment
                   </p>
                 </div>
@@ -33,7 +33,7 @@ export default async function BoursesExternesSection() {
                 ) : (
                   /* MESSAGE STYLE SI VIDE */
                   <div className="max-w-3xl mx-auto">
-                    <div className="relative p-10 md:p-16 text-center border-2 border-dashed border-slate-200 rounded-[40px] bg-slate-50/50">
+                    <div className="relative p-10 md:p-16 text-center border-2 border-dashed border-amber-200 rounded-[40px] bg-amber-50/50">
                       {/* Décoration d'arrière-plan */}
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-theme-green/5 rounded-full blur-3xl"></div>
                       

@@ -53,15 +53,13 @@ export default function OffresPage() {
       
       {/* HEADER */}
       <div className="lg:flex xs:flex-col justify-between items-center">
-        <h1 className="text-2xl font-bold">Liste des annonces de bourses d'études extérieurs</h1>
+        <h1 className="text-2xl text-(--color-theme-green) font-bold">Liste des annonces de bourses d'études extérieurs</h1>
         
         {/* BOUTON ACTION */}
         <button 
           className="flex items-center gap-2 px-5 py-2.5 bg-(--color-theme-yellow) border border-(--color-theme-yellow) rounded-xl text-sm font-semibold text-slate-900 hover:bg-(--color-theme-green) hover:border-(--color-theme-green) hover:text-white shadow-sm transition-all active:scale-95"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
+          <Plus size={18} />
           Publier une offre de bourses
         </button>
       </div>
@@ -79,7 +77,7 @@ export default function OffresPage() {
                 </select>
                 <input 
                     name="pays" 
-                    placeholder="Pays (ex: France)" 
+                    placeholder="Entrer un pays" 
                     onChange={handleFilterChange} 
                     className={filterStyles.input} 
                     value={filters.pays} 
@@ -127,7 +125,7 @@ export default function OffresPage() {
         </div>
       </div>
 
-      <div className="w-full font-medium">
+      <div className="w-full font-medium text-slate-600">
         Nombre de résultats trouvés : <span className="font-bold text-(--color-theme-red) animate-in fade-in duration-500">{result.totalCount || 0}</span> <span className="text-(--color-theme-red)">annonces</span>
       </div>
 

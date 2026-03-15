@@ -776,14 +776,14 @@ export async function getFilteredBoursesExternes(params: {
       // Recherche sur le nom de la bourse ou l'organisme
       params.search ? {
         OR: [
-          { nom_bourse: { contains: params.search, mode: 'insensitive' } },
-          { organisme: { contains: params.search, mode: 'insensitive' } },
+          { nom_bourse: { contains: params.search.trim().toLowerCase(), mode: 'insensitive' } },
+          { organisme: { contains: params.search.trim().toLowerCase(), mode: 'insensitive' } },
         ]
       } : {},
       
       // Filtre par pays (recherche dans la string "France, Maroc...")
       params.pays ? {
-        pays: { contains: params.pays, mode: 'insensitive' }
+        pays: { contains: params.pays.trim().toLowerCase(), mode: 'insensitive' }
       } : {},
 
       // Filtre par disponibilité

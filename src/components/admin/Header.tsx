@@ -34,7 +34,7 @@ export default function AdminHeader() {
   const { title, desc } = getPageInfo();
 
   return (
-    <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-slate-200 bg-white/80 backdrop-blur-md px-4 py-5 dark:border-slate-800 dark:bg-slate-950/80 md:px-8">
+    <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-slate-200 bg-white/80 backdrop-blur-md px-4 py-5 md:px-8">
       
       {/* Côté Gauche : Toggle Mobile & Titre */}
       <div className="flex items-center gap-4">
@@ -52,7 +52,7 @@ export default function AdminHeader() {
         )}
 
         <div className="hidden  xl:block">
-          <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight mb-1">
+          <h1 className="text-xl font-black text-slate-900 tracking-tight mb-1">
             {title}
           </h1>
           <p className="text-xs font-medium text-slate-500 tracking-widest">
@@ -76,7 +76,7 @@ export default function AdminHeader() {
 
         {/* Notifications & User */}
         <div className="flex items-center gap-2 md:gap-4">
-          <div className="h-8 w-px bg-slate-100 dark:bg-slate-800 mx-1"></div>
+          <div className="h-8 w-px bg-slate-100"></div>
 
           <UserInfo />
         </div>

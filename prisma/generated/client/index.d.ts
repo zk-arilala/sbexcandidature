@@ -186,7 +186,9 @@ export const MentionBaccalaureat: typeof $Enums.MentionBaccalaureat
  * Type-safe database client for TypeScript & Node.js
  * @example
  * ```
- * const prisma = new PrismaClient()
+ * const prisma = new PrismaClient({
+ *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+ * })
  * // Fetch zero or more RoleUtilisateurs
  * const roleUtilisateurs = await prisma.roleUtilisateur.findMany()
  * ```
@@ -207,7 +209,9 @@ export class PrismaClient<
    * Type-safe database client for TypeScript & Node.js
    * @example
    * ```
-   * const prisma = new PrismaClient()
+   * const prisma = new PrismaClient({
+   *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+   * })
    * // Fetch zero or more RoleUtilisateurs
    * const roleUtilisateurs = await prisma.roleUtilisateur.findMany()
    * ```
@@ -476,8 +480,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.4.1
-   * Query Engine version: 55ae170b1ced7fc6ed07a15f110549408c501bb3
+   * Prisma Client JS version: 7.5.0
+   * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
    */
   export type PrismaVersion = {
     client: string
@@ -3213,6 +3217,11 @@ export namespace Prisma {
      * Skip the first `n` RoleUtilisateurs.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoleUtilisateurs.
+     */
     distinct?: RoleUtilisateurScalarFieldEnum | RoleUtilisateurScalarFieldEnum[]
   }
 
@@ -4396,6 +4405,11 @@ export namespace Prisma {
      * Skip the first `n` Utilisateurs.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Utilisateurs.
+     */
     distinct?: UtilisateurScalarFieldEnum | UtilisateurScalarFieldEnum[]
   }
 
@@ -5490,6 +5504,11 @@ export namespace Prisma {
      * Skip the first `n` Provinces.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Provinces.
+     */
     distinct?: ProvinceScalarFieldEnum | ProvinceScalarFieldEnum[]
   }
 
@@ -6647,6 +6666,11 @@ export namespace Prisma {
      * Skip the first `n` Regions.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Regions.
+     */
     distinct?: RegionScalarFieldEnum | RegionScalarFieldEnum[]
   }
 
@@ -7757,6 +7781,11 @@ export namespace Prisma {
      * Skip the first `n` Diplomes.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Diplomes.
+     */
     distinct?: DiplomeScalarFieldEnum | DiplomeScalarFieldEnum[]
   }
 
@@ -9311,6 +9340,11 @@ export namespace Prisma {
      * Skip the first `n` Candidats.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Candidats.
+     */
     distinct?: CandidatScalarFieldEnum | CandidatScalarFieldEnum[]
   }
 
@@ -10524,6 +10558,11 @@ export namespace Prisma {
      * Skip the first `n` InfosBaccalaureats.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of InfosBaccalaureats.
+     */
     distinct?: InfosBaccalaureatScalarFieldEnum | InfosBaccalaureatScalarFieldEnum[]
   }
 
@@ -11586,6 +11625,11 @@ export namespace Prisma {
      * Skip the first `n` TypeBourses.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TypeBourses.
+     */
     distinct?: TypeBourseScalarFieldEnum | TypeBourseScalarFieldEnum[]
   }
 
@@ -12637,6 +12681,11 @@ export namespace Prisma {
      * Skip the first `n` NumeroDossiers.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NumeroDossiers.
+     */
     distinct?: NumeroDossierScalarFieldEnum | NumeroDossierScalarFieldEnum[]
   }
 
@@ -13938,6 +13987,11 @@ export namespace Prisma {
      * Skip the first `n` DemandeBourses.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DemandeBourses.
+     */
     distinct?: DemandeBourseScalarFieldEnum | DemandeBourseScalarFieldEnum[]
   }
 
@@ -15114,6 +15168,11 @@ export namespace Prisma {
      * Skip the first `n` DepotExternes.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DepotExternes.
+     */
     distinct?: DepotExterneScalarFieldEnum | DepotExterneScalarFieldEnum[]
   }
 
@@ -16197,6 +16256,11 @@ export namespace Prisma {
      * Skip the first `n` PiecesJointes.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PiecesJointes.
+     */
     distinct?: PiecesJointesScalarFieldEnum | PiecesJointesScalarFieldEnum[]
   }
 
@@ -17514,6 +17578,11 @@ export namespace Prisma {
      * Skip the first `n` BourseExternes.
      */
     skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BourseExternes.
+     */
     distinct?: BourseExterneScalarFieldEnum | BourseExterneScalarFieldEnum[]
   }
 

@@ -1,7 +1,7 @@
 import { PDFDocument, RGB, rgb, StandardFonts } from 'pdf-lib';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { PiecesJointes } from '@app/generated/prisma';
+import { PiecesJointes } from '../../prisma/generated/client';
 
 interface FieldPosition {
   x: number;

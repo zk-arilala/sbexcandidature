@@ -6,9 +6,9 @@ import { Calendar, Clock, AlertTriangle, FileText, User, GraduationCap, FolderTr
 //import CandidatInfo from '@/components/CandidatInfo';
 //import BourseInfo from '@/components/BourseInfo';
 //import PiecesJointes from '@/components/PiecesJointes';
-import CandidatInfo from '@app/suivi-candidature/[numeroDossier]/components/CandidatInfo';
-import BourseInfo from '@app/suivi-candidature/[numeroDossier]/components/BourseInfo';
-import PiecesJointes from '@app/suivi-candidature/[numeroDossier]/components/PiecesJointes';
+import CandidatInfo from '@app/(site)/suivi-candidature/[numeroDossier]/components/CandidatInfo';
+import BourseInfo from '@app/(site)/suivi-candidature/[numeroDossier]/components/BourseInfo';
+import PiecesJointes from '@app/(site)/suivi-candidature/[numeroDossier]/components/PiecesJointes';
 import InfoModal from '@/components/InfoModal';
 
 // Réutilisation du composant Tabs

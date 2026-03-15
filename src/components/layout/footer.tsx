@@ -67,7 +67,7 @@ export default function Footer() {
                   Service des Bourses EXterieurs (SBEX)
                 </p>
                 <p className="block text-sm text-gray-400 mb-9">
-                  Direction des Bourses Nationales et Extérieures (DBNE) /<br/> Ministère de l'Enseignement Supérieur et de la Recherche Scientifique
+                  Direction des Bourses Nationales et Extérieures (DBNE)<br/> Ministère de l'Enseignement Supérieur et de la Recherche Scientifique
                 </p>
                 
               </div>
@@ -87,10 +87,10 @@ export default function Footer() {
                       Les bourses disponibles
                     </Link>
                     <Link href="/candidature-universitaire" className="text-sm font-normal text-gray-400 transition hover:text-white" >
-                      Candidature aux bourse d'études Universitaire
+                      Candidature aux bourses Universitaires
                     </Link>
                     <Link href="/candidature-post-universitaire" className="text-sm font-normal text-gray-400 transition hover:text-white" >
-                      Candidature aux bourse d'études Universitaire
+                      Candidature aux bourses Post-Universitaires
                     </Link>
                   </nav>
                 </div>

@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, ChangeEvent, useRef, useEffect, ReactNode } from "react"
-import { creerCandidaturePostUniversitaire } from "@app/candidature-post-universitaire/actions"
-import { Send, RotateCcw, Paperclip, FilePlus, X, Copy, CheckCheck, ArrowLeft, ArrowRight, Check, ShieldCheck, LockKeyhole, KeyIcon, UserLock, UserLockIcon, EyeOff, Eye, LogIn } from "lucide-react"
+import { creerCandidaturePostUniversitaire } from "@app/(site)/candidature-post-universitaire/actions"
+import { Send, RotateCcw, Paperclip, FilePlus, X, Copy, CheckCheck, ArrowLeft, ArrowRight, Check, ShieldCheck, LockKeyhole, KeyIcon, UserLock, UserLockIcon, EyeOff, Eye, LogIn, TriangleAlert } from "lucide-react"
 import { uploadFile, uploadMultipleFiles, generateCandidateFolder } from '@app/actions/upload'
-import { getNextNumeroDossier } from "@app/candidature-post-universitaire/getNextNumeroDossier"
+import { getNextNumeroDossier } from "@app/(site)/candidature-post-universitaire/getNextNumeroDossier"
 import AlertModal from "../ui/AlertModal"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
@@ -1184,7 +1184,7 @@ export default function CandidaturePostUniversitaireForm({
           >
             {/* ===================== REGION ORIGINE ===================== */}
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6">
-              <legend className="font-semibold text-xl px-2">
+              <legend className="font-semibold text-xl px-2 text-(--color-theme-blue2)">
                 Région d'origine
               </legend>
 
@@ -1205,7 +1205,7 @@ export default function CandidaturePostUniversitaireForm({
 
             {/* ===================== CANDIDAT ===================== */}
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6 mt-10">
-              <legend className="font-semibold text-xl px-2">
+              <legend className="font-semibold text-xl px-2 text-(--color-theme-blue2)">
                 Renseignements concernant le/la candidat(e)
               </legend>
 
@@ -1339,7 +1339,7 @@ export default function CandidaturePostUniversitaireForm({
                                 setNationaliteValue(nat);
                                 setIsOpen(false);
                               }}
-                              className="p-2 hover:bg-blue-100 cursor-pointer text-sm"
+                              className="p-2 hover:bg-blue-100 cursor-pointer text-sm text-slate-700"
                             >
                               {nat}
                             </li>
@@ -1499,7 +1499,7 @@ export default function CandidaturePostUniversitaireForm({
             transition={{ duration: 0.35 }}
           >
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6">
-              <legend className="font-semibold text-xl px-2">
+              <legend className="font-semibold text-xl px-2 text-(--color-theme-blue2)">
                 Informations sur le dernier diplôme obtenu
               </legend>
 
@@ -1531,7 +1531,7 @@ export default function CandidaturePostUniversitaireForm({
             </fieldset>
 
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6 mt-10">
-              <legend className="font-semibold text-xl px-2">
+              <legend className="font-semibold text-xl px-2 text-(--color-theme-blue2)">
                 Informations sur le diplôme de Baccalauréat
               </legend>
 
@@ -1655,7 +1655,7 @@ export default function CandidaturePostUniversitaireForm({
             transition={{ duration: 0.35 }}
           >
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6">
-              <legend className="font-semibold text-xl px-2">
+              <legend className="font-semibold text-xl px-2 text-(--color-theme-blue2)">
                 Renseignements sur les études à poursuivre
               </legend>
               
@@ -1968,8 +1968,16 @@ export default function CandidaturePostUniversitaireForm({
             animate="animate"
             transition={{ duration: 0.35 }}
           >
+            <div className="flex items-center justify-center text-center my-6 bg-amber-100 border border-(--color-theme-yellow) rounded-lg p-6 mb-6">
+              <p className="w-150 text-sm text-col text-(--color-theme-dark-blue)">
+                <TriangleAlert size={18}/>
+                Important : Toutes les pièces jointes doivent être des copies certifiées conformes aux originaux ou légalisées par les autorités compétentes.<br/> 
+                Toute pièce non conforme sera rejetée.
+                </p>
+            </div>
+
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6">
-              <legend className="font-semibold text-xl px-2">
+              <legend className="font-semibold text-xl px-2 text-(--color-theme-blue2)">
                 Pièces jointes
               </legend>
               <p className="text-sm text-col text-(--color-theme-red) mb-5">Formats acceptés : <strong>PDF, JPG, JPEG, PNG</strong></p>
@@ -2181,7 +2189,7 @@ export default function CandidaturePostUniversitaireForm({
 
                 {/* ===================== CREER UN COMPTE UTILISATEUR ===================== */}
                 <fieldset className="border border-(--color-theme-green) rounded-lg p-6">
-                  <legend className="font-semibold text-xl px-2 mx-auto text-center">
+                  <legend className="font-semibold text-xl px-2 mx-auto text-center text-(--color-theme-blue2)">
                     Créer un nouveau compte utilisateur
                   </legend>
 
@@ -2366,7 +2374,7 @@ export default function CandidaturePostUniversitaireForm({
 
           <form onSubmit={handleLoginSubmit} className="p-6 space-y-4">
             <Field label="Adresse email">
-              <input type="email" name="authentification_email" required className="input transition-all outline-(--color-theme-green) focus:border-(--color-theme-blue2) focus:ring-1 focus:ring-(--color-theme-blue2) user-invalid:border-red-500 user-invalid:ring-red-500 user-invalid:outline-red-500" />
+              <input type="email" name="authentification_email" required className="input text-(--color-theme-blue2) transition-all outline-(--color-theme-green) focus:border-(--color-theme-blue2) focus:ring-1 focus:ring-(--color-theme-blue2) user-invalid:border-red-500 user-invalid:ring-red-500 user-invalid:outline-red-500" />
             </Field>
 
             <Field label="Mot de passe">
@@ -2375,7 +2383,7 @@ export default function CandidaturePostUniversitaireForm({
                   type={showPassword ? "text" : "password"}
                   name="authentification_password"
                   required
-                  className="input pr-10 transition-all outline-(--color-theme-green) focus:border-(--color-theme-blue2) focus:ring-1 focus:ring-(--color-theme-blue2) user-invalid:border-red-500 user-invalid:ring-red-500 user-invalid:outline-red-500"
+                  className="input text-(--color-theme-blue2) pr-10 transition-all outline-(--color-theme-green) focus:border-(--color-theme-blue2) focus:ring-1 focus:ring-(--color-theme-blue2) user-invalid:border-red-500 user-invalid:ring-red-500 user-invalid:outline-red-500"
                 />
                 <button
                   type="button"
@@ -2416,7 +2424,7 @@ function Field({
   className?: string; }) {
   return (
     <div className={`space-y-1 ${className}`}>
-      <label className={`block text-sm font-medium mb-1 ${showLabel}`}>
+      <label className={`block text-sm font-medium mb-1 text-(--color-theme-blue2) ${showLabel}`}>
         {label}
         {isRequired ? (
           <span className="text-red-500" aria-hidden="true"> *</span>
@@ -2489,7 +2497,7 @@ function FileInput({
           {getDisplayName()}
         </span>
 
-        <label className="inline-flex gap-2 cursor-pointer ml-3 shrink-0 rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700 transition">
+        <label className="inline-flex gap-2 cursor-pointer ml-3 shrink-0 rounded-md bg-(--color-theme-green) px-3 py-1.5 text-xs font-medium text-white hover:bg-(--color-theme-yellow) hover:text-slate-700 transition">
           <Paperclip className="w-4 h-4" /> Joindre fichier
           <input
             type="file"

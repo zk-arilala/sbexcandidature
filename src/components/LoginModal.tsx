@@ -55,7 +55,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         <form onSubmit={handleLoginSubmit} className="p-6 space-y-4">
           <div className="space-y-1">
             <label className="text-sm font-medium text-slate-700">Adresse email</label>
-            <input type="email" name="authentification_email" required className="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-(--color-theme-green) outline-none" />
+            <input type="email" name="authentification_email" required className="w-full p-3 text-(--color-theme-blue2) rounded-lg border border-slate-300 focus:ring-2 focus:ring-(--color-theme-green) outline-none" />
           </div>
 
           <div className="space-y-1">
@@ -65,7 +65,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                 type={showPassword ? "text" : "password"}
                 name="authentification_password"
                 required
-                className="w-full p-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-(--color-theme-green) outline-none"
+                className="w-full p-3 text-(--color-theme-blue2) rounded-lg border border-slate-300 focus:ring-2 focus:ring-(--color-theme-green) outline-none"
               />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400">
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}

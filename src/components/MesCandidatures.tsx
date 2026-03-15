@@ -62,7 +62,7 @@ export default function MesCandidatures() {
             className="inline-flex items-center gap-2 bg-(--color-theme-green) text-white px-8 py-3 rounded-lg hover:bg-(--color-theme-yellow) hover:text-(--color-theme-dark-blue) font-medium transition"
             >
             <Plus size={18} />
-            Envoyer une demande
+            Déposer une candidature
             </button>
         </div>
         </div>
