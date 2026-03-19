@@ -20,7 +20,7 @@ export default function BoursesExternesCard({ bourse }: { bourse: Bourse }) {
 
   return (
     <>
-    <div className="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 border rounded-[20px] border-gray-100 hover:border-(--color-theme-green) transition group flex flex-col h-full">
+    <div className="p-2 bg-gray-50 dark:bg-white/5 dark:border-gray-800 border rounded-[20px] border-gray-300 hover:border-(--color-theme-green) transition group flex flex-col h-full">
       
       <div className="flex items-center p-3 mb-3 bg-white/90 dark:bg-white/3 rounded-2xl shadow-sm">
         <div className="shrink-0 h-13 w-13 rounded-full bg-theme-green/10 flex items-center justify-center mr-4 border border-theme-green/20">
@@ -50,12 +50,12 @@ export default function BoursesExternesCard({ bourse }: { bourse: Bourse }) {
         {/* Section Infos Supplémentaires : Pays et Date de Pub */}
         <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col gap-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-600 dark:text-gray-300">
-              <Globe size={14} className="text-blue-500" />
+            <div className="flex items-center gap-1 text-sm font-bold text-slate-600 dark:text-gray-300">
+              <Globe size={16} className="text-blue-500" />
               <span>{bourse.pays}</span>
             </div>
-            <div className="flex items-center gap-1 text-[10px] text-gray-400">
-              <CalendarDays size={12} />
+            <div className="flex items-center gap-1 text-sm text-gray-600">
+              <CalendarDays size={16} />
               <span>Publié le {new Date(bourse.date_publication).toLocaleDateString('fr-FR')}</span>
             </div>
           </div>

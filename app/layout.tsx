@@ -6,6 +6,7 @@ import { ToasterProvider } from './providers/toaster';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header/header';
 import { SessionProvider } from '@/context/SessionContext';
+import { Toaster } from 'sonner';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -35,7 +36,7 @@ export default function RootLayout({
           <Header />
 
           <ThemeProvider disableTransitionOnChange>
-            <ToasterProvider />
+            {/*<ToasterProvider />*/}
             <div className="isolate flex flex-col flex-1 relative z-40">
               <SessionProvider>
               {children}
@@ -46,6 +47,7 @@ export default function RootLayout({
           <Footer />
         </SessionProvider>
 
+        <Toaster position="top-right" richColors closeButton />
       </body>
     </html>
   );

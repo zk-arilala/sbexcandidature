@@ -165,7 +165,7 @@ export default function PiecesJointes({ dossier }: { dossier: any }) {
             className="fixed inset-0 z-50 flex justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200" 
             onClick={() => {
                 setShowFileModal(false);
-                setPdfData(null); // Nettoyage au clic extérieur
+                setPdfData(null);
             }}
         >
             <div 
@@ -266,7 +266,6 @@ export default function PiecesJointes({ dossier }: { dossier: any }) {
                                       src={`/pieces_jointes/${dossier.numero_dossier}/${currentFile?.nom_fichier}`} 
                                       alt="Aperçu" 
                                       className="max-w-full max-h-full object-contain rounded-lg shadow-2xl bg-white pointer-events-none" 
-                                      /* pointer-events-none est crucial pour que l'image ne bloque pas le drag */
                                   />
                               </div>
 

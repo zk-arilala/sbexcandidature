@@ -28,11 +28,7 @@ export default function ResultContent({ dossier_candidat, isExpired }: { dossier
     if (!user) {
         setIsUserDataLoaded(true);
         setLoading(false);
-
-        const timeout = setTimeout(() => {
-            if (!user) router.push("/"); 
-        }, 500);
-        return () => clearTimeout(timeout);
+        return;
     }
 
     async function loadData() {
@@ -130,21 +126,23 @@ export default function ResultContent({ dossier_candidat, isExpired }: { dossier
 
                     {/* BANDEAU INCITATIF (Affiché uniquement si NON connecté) */}
                     {mounted && !user && !loading && (
-                    <div className="relative overflow-hidden bg-(--color-theme-yellow) rounded-2xl p-1 shadow-md mt-5">
-                        <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-[calc(1rem-1px)] p-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                            <div className="flex items-center gap-3 ">
-                            <div className="p-4 bg-white/20 rounded-lg">
-                                <MessageCircleWarning className="w-8 h-8 text-white" />
+                    <div className="p-12 md:p-12 mt-4 text-center bg-amber-50/30 rounded-2xl border-2 border-dashed border-amber-200/60 relative overflow-hidden group">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-amber-200/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+
+                        <div className="relative z-10 flex flex-col items-center">
+                            <div className="mb-6 p-5 bg-white rounded-2xl shadow-sm border border-amber-900/30 flex items-center justify-center text-amber-900">
+                            <LockKeyhole size={40} strokeWidth={1.5} className="animate-pulse" />
                             </div>
-                            <div>
-                                <p className="font-semibold text-sm mb-2">Connexion requise pour accéder au dossier complet.</p>
-                                <p className="text-xs">Pour consulter toutes les informations de ce dossier, Merci de vous connecter à votre compte utilisateur.</p>
-                            </div>
-                            </div>
+                            <h3 className="text-base font-bold text-amber-900 mb-2 tracking-tight">
+                            Connexion requise pour accéder au dossier complet.
+                            </h3>
+                            <p className="text-sm text-amber-700/70 max-w-100 leading-relaxed mx-auto font-medium">
+                            Pour consulter toutes les informations de ce dossier, Merci de vous connecter à votre compte utilisateur.
+                            </p>
                             <button 
                                 type="button" 
                                 onClick={() => setIsLoginOpen(true)}
-                                className="inline-flex gap-3 border bg-(--color-theme-green) text-white px-8 py-3 rounded-lg hover:bg-(--color-theme-yellow) transition"
+                                className="inline-flex gap-3 border bg-(--color-theme-green) text-white mt-2 px-8 py-3 rounded-lg hover:bg-(--color-theme-yellow) transition"
                             >
                                 Se connecter
                                 <LogIn className="w-5 h-5"/>
@@ -173,17 +171,19 @@ export default function ResultContent({ dossier_candidat, isExpired }: { dossier
             <section className={`py-14 md:py-5 ${!user ? 'hidden' : 'block'}`}>
                 <div className="wrapper">
                     <div className="max-w-6xl mx-auto">
-                        <div className="relative overflow-hidden bg-amber-100 rounded-2xl p-1 shadow-md">
-                            <div className="relative bg-white/10 backdrop-blur-md border border-(--color-theme-yellow) rounded-[calc(1rem-1px)] p-4 flex flex-col md:flex-row items-center justify-between gap-4">
-                                <div className="flex items-center gap-3 ">
-                                    <div className="p-4 bg-(--color-theme-yellow) rounded-lg">
-                                        <MessageCircleWarning className="w-8 h-8 text-white" />
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold text-sm mb-2 ">Ce dossier ne semble pas lié à votre compte candidat actuel.</p>
-                                        <p className="text-xs">Merci de noter que l’accès à ce dossier est limité au compte candidat ayant effectué la candidature.</p>
-                                    </div>
+                        <div className="p-12 md:p-12 text-center bg-red-50/30 rounded-2xl border-2 border-dashed border-red-200/60 relative overflow-hidden group">
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-red-200/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+
+                            <div className="relative z-10 flex flex-col items-center">
+                                <div className="mb-6 p-5 bg-white rounded-2xl shadow-sm border border-red-900/30 flex items-center justify-center text-red-900">
+                                <LockKeyhole size={40} strokeWidth={1.5} className="animate-pulse" />
                                 </div>
+                                <h3 className="text-base font-bold text-red-900 mb-2 tracking-tight">
+                                Ce dossier ne semble pas lié à votre compte candidat actuel.
+                                </h3>
+                                <p className="text-sm text-red-700/70 max-w-100 leading-relaxed mx-auto font-medium">
+                                Merci de noter que l’accès à ce dossier est limité seulement au compte candidat qui a déposé la candidature.
+                                </p>
                             </div>
                         </div>
                     </div>

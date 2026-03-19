@@ -11,6 +11,7 @@ import LoginModal from "@/components/LoginModal";
 import { User as UserIcon, LogOut, Menu as MenuIcon, X as CloseIcon, LogIn, LockKeyhole, LockKeyholeOpen, FileText, LayoutDashboard, ChevronDown } from "lucide-react";
 import { getFullUserSession } from '@app/actions';
 //import { CloseIcon, MenuIcon } from '@/icons/icons';
+import { toast } from 'sonner';
 
 export default function Header() {
   const { user, logout } = useSession();
@@ -24,6 +25,30 @@ export default function Header() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      const shouldShowToast = localStorage.getItem("show_logout_toast");
+      
+      if (shouldShowToast === "true") {
+        const timer = setTimeout(() => {
+          toast.success("Déconnexion réussie", {
+            description: "Votre session a été fermée avec succès.",
+            duration: 6000,
+          });
+          localStorage.removeItem("show_logout_toast");
+        }, 100);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!user) {
+      setUserSessionInfo(null);
+    }
+  }, [user]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -198,10 +223,8 @@ export default function Header() {
           </div>
         </div>
       </div>
-
-      <SessionProvider>
+      
       <MainMobileNav isOpen={mobileMenuOpen} />
-      </SessionProvider>
       
       <LoginModal 
         isOpen={isLoginOpen} 

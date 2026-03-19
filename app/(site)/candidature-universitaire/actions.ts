@@ -69,13 +69,19 @@ export async function creerCandidatureUniversitaire(
       // 0 UTILISATEUR
       let currentUserId: number
       if (data.utilisateur && data.utilisateur.password) {
+        const currentUserEmail = data.utilisateur.email.trim().toLowerCase();
         // Vérifier si l'utilisateur existe déjà
-        const existingUser = await tx.utilisateur.findUnique({
-          where: { user_email: data.utilisateur.email },
-        })
+        const existingUser = await tx.utilisateur.findFirst({
+          where: {
+            OR: [
+              { user_email: currentUserEmail },
+              { identifiant: currentUserEmail }
+            ]
+          },
+        });
 
         if (existingUser) {
-          throw new Error(`Un compte utilisateur associé à l'adresse email « ${data.utilisateur.email} » existe déjà. Si c'est vous, merci de vous connecter pour finaliser votre demande de candidature.`)
+          throw new Error(`L'email ou l'identifiant ${currentUserEmail} est déjà utilisé. Si c'est vous, merci de vous connecter pour finaliser votre demande de candidature.`)
         }
 
         const hashedPassword = await bcrypt.hash(
@@ -83,31 +89,39 @@ export async function creerCandidatureUniversitaire(
           10
         )
 
-        console.log("Données UTILISATEUR envoyées à Prisma:", {
-          nom: data.utilisateur.nom,
-          prenom: data.utilisateur.prenom,
-          user_email: data.utilisateur.email,
-          identifiant: data.utilisateur.email,
-          mot_de_passe: hashedPassword,
-          est_actif: true,
-          date_creation: today,
-          role_id: 4,
-        })
-        const utilisateur = await tx.utilisateur.create({
-          data: {
-            //user_nom: data.utilisateur.nom,
-            //user_prenom: data.utilisateur.prenom,
-            user_email: data.utilisateur.email,
-            identifiant: data.utilisateur.email,
+        try {
+          console.log("Données UTILISATEUR envoyées à Prisma:", {
+            nom: data.utilisateur.nom,
+            prenom: data.utilisateur.prenom,
+            user_email: currentUserEmail,
+            identifiant: currentUserEmail,
             mot_de_passe: hashedPassword,
             est_actif: true,
             date_creation: today,
-            role_id: 4, // rôle "CANDIDAT"
-          },
-        })
-        currentUserId = utilisateur.id
+            role_id: 4,
+          })
+          const utilisateur = await tx.utilisateur.create({
+            data: {
+              nom: data.utilisateur.nom || "",
+              prenom: data.utilisateur.prenom || "",
+              user_email: currentUserEmail,
+              identifiant: currentUserEmail,
+              mot_de_passe: hashedPassword,
+              est_actif: true,
+              date_creation: today,
+              role_id: 4, // rôle "CANDIDAT"
+            },
+          })
+          currentUserId = utilisateur.id
+        } catch (error: any) {
+          console.error("Erreur détaillée Prisma:", error);
+          if (error.code === 'P2002') {
+            throw new Error(`Contrainte unique violée sur le champ : ${error.meta?.target}`);
+          }
+          throw error;
+        }
       } else if (data.utilisateur && data.utilisateur.id) {
-        // si utilisateur connecté
+        // si utilisateur déjà connecté
         currentUserId = Number(data.utilisateur.id);
       } else {
         throw new Error("Informations utilisateur manquantes. Merci de vous connecter ou de créer un compte.");
@@ -234,7 +248,10 @@ export async function creerCandidatureUniversitaire(
           date_depot: today,
           date_expiration: dateExpiration,
 
-          annonce_bourse_externe_id: data.annonce_bourse_id,
+          /*annonce_bourse_externe_id: data.annonce_bourse_id,*/
+          annonce_bourse_externe_id: (data.annonce_bourse_id && Number(data.annonce_bourse_id) > 0) 
+          ? Number(data.annonce_bourse_id) 
+          : null,
         },
       });
       const currentYear = new Date().getFullYear();

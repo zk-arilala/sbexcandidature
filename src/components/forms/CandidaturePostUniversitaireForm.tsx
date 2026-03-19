@@ -1758,7 +1758,7 @@ export default function CandidaturePostUniversitaireForm({
                                       {pays}
                                     </span>
                                     {isDefaultPays && (
-                                      <span className="text-[12px] text-(color-theme-dark-blue) font-medium">Pays d’accueil correspondant à l’offre de bourses à laquelle vous avez postulé</span>
+                                      <span className="text-[12px] text-slate-700 font-medium">Pays d’accueil correspondant à l’offre de bourses à laquelle vous avez postulé</span>
                                     )}
                                   </div>
                                 </label>
@@ -1968,12 +1968,14 @@ export default function CandidaturePostUniversitaireForm({
             animate="animate"
             transition={{ duration: 0.35 }}
           >
-            <div className="flex items-center justify-center text-center my-6 bg-amber-100 border border-(--color-theme-yellow) rounded-lg p-6 mb-6">
-              <p className="w-150 text-sm text-col text-(--color-theme-dark-blue)">
-                <TriangleAlert size={18}/>
-                Important : Toutes les pièces jointes doivent être des copies certifiées conformes aux originaux ou légalisées par les autorités compétentes.<br/> 
-                Toute pièce non conforme sera rejetée.
-                </p>
+            <div className="flex items-center justify-center my-6 bg-amber-100 border border-(--color-theme-yellow) rounded-lg p-6 mb-6">
+              <div className="w-full inline-flex gap-2 text-sm text-col text-(--color-theme-dark-blue)">
+                <TriangleAlert size={38}/>
+                <div>
+                  <span className="font-semibold">Important :</span> Toutes les pièces jointes doivent être des <u>copies certifiées conformes aux originaux</u> ou <u>légalisées par les autorités compétentes</u>.<br/> 
+                  Toute pièce non conforme sera rejetée.
+                </div>
+              </div>
             </div>
 
             <fieldset className="border border-(--color-theme-green) rounded-lg p-6 space-y-6">

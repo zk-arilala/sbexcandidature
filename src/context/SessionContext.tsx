@@ -28,7 +28,12 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const logout = useCallback(() => {
     setUser(null);
     localStorage.removeItem("user_session");
+    
+    localStorage.setItem("show_logout_toast", "true");
+
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    //window.location.href = "/";
+    window.location.reload();
   }, []);
 
   const logoutInForm = useCallback(() => {
@@ -84,6 +89,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     setUser(newUser);
     localStorage.setItem("user_session", JSON.stringify(newUser));
     //window.location.reload(); 
+    window.location.reload();
   };
 
   const loginInForm = (id: string | number, email: string) => {
